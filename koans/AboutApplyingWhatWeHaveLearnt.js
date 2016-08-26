@@ -132,9 +132,42 @@ describe("About Applying What We Have Learnt", function() {
     expect(largestPrime(22)).toBe(19);
   });
 
-  // it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
-    
-  // });
+  it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
+    var largestPalindrome = function(num1, num2) {
+      var product = (num1 * num2).toString().split("");      
+      var copy = product.slice();
+      var curr;
+      var hash = {};
+      var num;
+
+      var findPalindrome = function(num) {
+        var compare = num.length-1;
+        for (var k = 0, len = num.length; k < len/2; k++) {
+          if (num[k] !== num[compare]) {
+            num.pop();
+            return findPalindrome(num);
+          }
+          compare--;
+        }
+        return +num.join("");
+      }
+       
+      // shift each first number of product and check if the remains contain a palindrome
+      for (var i = 0, len = product.length; i < len; i++) {
+        num = copy.slice();
+        curr = findPalindrome(num);
+        if (typeof curr === "number") {
+          hash[curr] = curr;
+        }
+        copy.shift();
+      }
+
+      return +Object.keys(hash).sort(function(a,b) { return b-a;})[0];
+    }
+
+    expect(largestPalindrome(185, 606)).toBe(11211);
+    expect(largestPalindrome(310, 681)).toBe(1111);
+  });
 
   // it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
     
