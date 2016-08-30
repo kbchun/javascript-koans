@@ -163,15 +163,33 @@ describe("About Applying What We Have Learnt", function() {
       }
 
       return +Object.keys(hash).sort(function(a,b) { return b-a;})[0];
-    }
+    };
 
     expect(largestPalindrome(185, 606)).toBe(11211);
     expect(largestPalindrome(310, 681)).toBe(1111);
   });
 
-  // it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
-    
-  // });
+  it("should find the smallest number divisible by each of the numbers 1 to 20", function () {
+    var smallestDivisible = function(limit) {
+      var result = 20;
+      var found = false;
+  
+      while(!found) {
+        for (var i = limit; i > 0; i--) {
+          if (result % i !== 0) {
+            result += limit;
+            break;
+          }
+          else if (i === 1) {
+            found = true;
+          }
+        }
+      }
+      return result;
+    };
+
+    expect(smallestDivisible(20)).toBe(232792560);
+  });
 
   // it("should find the difference between the sum of the squares and the square of the sums", function () {
     
