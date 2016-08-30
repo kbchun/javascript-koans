@@ -198,12 +198,27 @@ describe("About Applying What We Have Learnt", function() {
   });
 
   it("should find the difference between the sum of the squares and the square of the sums", function () {
-    var diff = function(a, b) {
-      var sumOfSquares = Math.pow(a, 2) + Math.pow(b, 2);
-      var squareOfSums = Math.pow(a + b, 2);
-      var difference = Math.abs(sumOfSquares - squareOfSums);
-      return difference;
-    }
+    var diff = function(num) {
+      var sumOfSquares = function(num) {
+        var result = 1;
+        for (var i = 2; i <= num; i++) {
+          result += Math.pow(i, 2);
+        }
+        return result;
+      };
+
+      var squareOfSums = function(num) {
+        var result = 0;
+        for (var j = 0; j <= num; j++) {
+          result += j;
+        }
+        return Math.pow(result, 2);
+      };
+
+      return Math.abs(sumOfSquares(num) - squareOfSums(num));
+    };
+
+    expect(diff(5)).toBe(170);
   });
 
   // it("should find the 10001st prime", function () {
