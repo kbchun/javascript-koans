@@ -221,8 +221,32 @@ describe("About Applying What We Have Learnt", function() {
     expect(diff(5)).toBe(170);
   });
 
-  // it("should find the 10001st prime", function () {
-    
-  // });
+  it("should find the 10001st prime", function () {
+    var tenThousandFirstPrime = function(limit) {
+      var isPrime = function(num) {
+        for (var i = 2, len = num/2+1; i < len; i++) {
+          if (num%i === 0) {
+            return false;
+          }
+        }
+        return true; 
+      };
+
+      var num = 2;
+      var count = 0;
+
+      while (count <= limit) {
+        if (isPrime(num)) {
+          count++;
+          if (count === limit) {
+            return num;
+          }
+        }
+        num++;
+      }
+    };
+
+    expect(tenThousandFirstPrime(10001)).toBe(104743);
+  });
   
 });
