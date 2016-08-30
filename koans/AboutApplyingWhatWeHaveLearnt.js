@@ -115,21 +115,27 @@ describe("About Applying What We Have Learnt", function() {
   
   it("should find the largest prime factor of a composite number", function () {
     var largestPrime = function(num) {
-      var curr = num;
-      var i = 2;
-      while (i < curr) {
-        if (curr % i === 0) {
-          curr--;
-          i = 2;
+      var isPrime = function(num) {
+        for (var i = 2, len = num/2+1; i < len; i++) {
+          if (num%i === 0) {
+            return false;
+          }
         }
-        else {
-          i++;
+        return true; 
+      };
+
+      var curr = Math.round(num/2);
+      for (var j = curr; j > 1; j--) {
+        if (isPrime(curr) && (num%curr === 0)) {
+          return curr;
+        } else {
+          curr--;
+          j = curr;
         }
       }
-      return curr;
     };
 
-    expect(largestPrime(22)).toBe(19);
+    expect(largestPrime(22)).toBe(11);
   });
 
   it("should find the largest palindrome made from the product of two 3 digit numbers", function () {
