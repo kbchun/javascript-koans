@@ -191,9 +191,14 @@ describe("About Applying What We Have Learnt", function() {
     expect(smallestDivisible(20)).toBe(232792560);
   });
 
-  // it("should find the difference between the sum of the squares and the square of the sums", function () {
-    
-  // });
+  it("should find the difference between the sum of the squares and the square of the sums", function () {
+    var diff = function(a, b) {
+      var sumOfSquares = Math.pow(a, 2) + Math.pow(b, 2);
+      var squareOfSums = Math.pow(a + b, 2);
+      var difference = Math.abs(sumOfSquares - squareOfSums);
+      return difference;
+    }
+  });
 
   // it("should find the 10001st prime", function () {
     
